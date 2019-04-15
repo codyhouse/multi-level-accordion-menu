@@ -1,0 +1,146 @@
+@import '../../../../codyhouse-framework/main/assets/css/_global.scss'; // ⚠️ make sure to import the CodyHouse framework
+@import url('https://fonts.googleapis.com/css?family=Jaldi:400,700'); // custom font
+
+// --------------------------------
+
+// Multi-Level Accordion Menu - by CodyHouse.co
+
+// --------------------------------
+
+:root {
+  // colors
+  @include defineColorHSL(--cd-color-1, 218, 7%, 32%);  // Abbey
+  @include defineColorHSL(--cd-color-2, 127, 83%, 80%); // Gossip
+
+  // font
+  --font-primary: 'Jaldi', sans-serif;
+}
+
+body {
+  background-color: var(--cd-color-2);
+}
+
+.cd-article-link {
+	color: rgba(black, 0.5);
+}
+
+h1 {
+	font-weight: bold;
+  color: rgba(black, 0.9);
+}
+
+.cd-accordion {
+  background: var(--cd-color-1);
+  @include fontSmooth;
+  box-shadow: var(--shadow-lg);
+}
+
+.cd-accordion--animated .cd-accordion__label::before {
+  transition: transform .3s;
+}
+
+.cd-accordion__sub {
+  display: none; // by default hide all sub menus
+  overflow: hidden;
+}
+
+.cd-accordion__sub--is-visible {
+  display: block;
+}
+
+.cd-accordion__item {
+  user-select: none;
+}
+
+.cd-accordion__input { // hide native checkbox
+  position: absolute;
+  opacity: 0;
+}
+
+.cd-accordion__label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: var(--space-sm) var(--space-md);
+  background: var(--cd-color-1);
+  --color-shadow: lightness(var(--cd-color-1), 1.2);
+  box-shadow: inset 0 -1px var(--color-shadow);
+  color: var(--color-white);
+
+  span {
+    order: 3;
+  }
+
+  &:hover {
+    background: lightness(var(--cd-color-1), 1.1);
+  }
+}
+
+// icons
+.cd-accordion__label::after, .cd-accordion__label--icon-folder::before {
+  content: '';
+  display: block;
+  width: 16px;
+  height: 16px;
+  background-image: url('../img/cd-icons.svg');
+  background-repeat: no-repeat;
+  margin-right: var(--space-xxxs);
+}
+
+.cd-accordion__label--icon-folder::before {
+  order: 1;
+}
+
+.cd-accordion__label::after {
+  order: 2;
+}
+
+.cd-accordion__label--icon-folder {
+  &::before { // arrow icon
+    background-position: 0 0;
+    transform: rotate(-90deg);
+  }
+
+  &::after { // folder icon
+    background-position: -16px 0;
+  }
+}
+
+.cd-accordion__label--icon-img::after { // image icon
+  background-position: -48px 0;
+}
+
+.cd-accordion__input:checked + .cd-accordion__label::before { // rotate arrow
+  transform: rotate(0);
+}
+
+.cd-accordion__input:checked + .cd-accordion__label::after { // show open folder icon if item is checked
+  background-position: -32px 0;
+}
+
+.cd-accordion__input:checked ~ .cd-accordion__sub { // show children when item is checked
+  display: block;
+}
+
+.cd-accordion__sub--l1 .cd-accordion__label {
+  background: lightness(var(--cd-color-1), 0.65);
+  --color-shadow: lightness(var(--cd-color-1), 0.85);
+  box-shadow: inset 0 -1px var(--color-shadow);
+  padding-left: calc(var(--space-md) + 16px);
+
+  &:hover {
+    background: lightness(var(--cd-color-1), 0.75);
+  }
+}
+
+.cd-accordion__item:last-child .cd-accordion__label {
+  box-shadow: none;
+}
+
+.cd-accordion__sub--l2 .cd-accordion__label {
+  padding-left: calc(var(--space-md) + var(--space-xxxs) + 32px);
+}
+
+.cd-accordion__sub--l3 .cd-accordion__label {
+  padding-left: calc(var(--space-md) + var(--space-xxxs) + 48px);
+}
