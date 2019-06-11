@@ -12,7 +12,7 @@ A simple CSS accordion menu with support for sub level items.
 
 This experiment is built upon the [CodyHouse Framework](https://github.com/CodyHouse/codyhouse-framework).
 
-Make sure to include both the _global.scss and util.js files of the framework.
+Make sure to include both the style.scss and util.js files of the framework.
 
 ## Credits
 
